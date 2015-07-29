@@ -32,10 +32,10 @@ def input_guess(guess):
     #print out guess string
     print secret_number
     print type(guess)
-    print "Guess was ", int(guess)
-    if guess > secret_number:
+    print "Guess was ", guess
+    if int(guess) > secret_number:
         print "Lower"
-    elif guess < secret_number:
+    elif int(guess) < secret_number:
         print "Higher"
     else:
         print "Correct"
