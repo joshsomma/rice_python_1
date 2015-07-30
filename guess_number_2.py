@@ -15,11 +15,12 @@ def new_game():
     # initialize global variables used in your code here
     global secret_number, max_range, player_tries
     #print welcome message
-    print "Enter a guess between 1 and ", max_range, "\n"
+    print "Guess the number between 1 and ", max_range, "\n"
     #generate the secret number
     secret_number = random.randrange(1,max_range)
     #set player tries to zero
-    player_tries = 0
+    player_tries = 1
+    print player_tries
 
 #define event handlers for control panel
 def range100():
@@ -46,6 +47,7 @@ def input_guess(guess):
         new_game()
     elif player_tries >= number_tries: #reset game if no more attempts left
         print "Sorry, you have run out of attempts"
+        print "The secret number was ", secret_number
         new_game()
     else: # check the guess against secret number and return result to player
         print "Guess was ", guess
