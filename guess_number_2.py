@@ -6,55 +6,68 @@
 import simplegui
 import random
 
+#set initial global value for max range and number of guesses
 max_range = 100
-
+number_tries = 7
 
 # helper function to start and restart the game
 def new_game():
     # initialize global variables used in your code here
-    print "Starting a new game!"
-    global secret_number, max_range
+    global secret_number, max_range, player_tries
+    #print welcome message
+    print "Enter a guess between 1 and ", max_range, "\n"
+    #generate the secret number
     secret_number = random.randrange(1,max_range)
-    print max_range
+    #set player tries to zero
+    player_tries = 0
 
-
-# define event handlers for control panel
+#define event handlers for control panel
 def range100():
-    # button that changes the range to [0,100) and starts a new game
-    global max_range
-    max_range = 100 
-    print "Starting new game with range 1 - 100 \n"
-    new_game()
+    #button that changes the range to [0,100) and starts a new game
+    global max_range, number_tries #import globals
+    max_range = 100 #set max range
+    number_tries = 7 #set number of tries
+    print "Starting new game with range 1 - 100 \n" #print welcome message
+    new_game() #start new game
 
 def range1000():
-    # button that changes the range to [0,1000) and starts a new game     
-    global max_range
-    max_range = 1000
-    print max_range
-    print "Starting new game with range 1 - 1000 \n"
-    new_game()
-    
-def input_guess(guess):
-    # main game logic goes here
-    print "Secret number: ", secret_number
-    print "Guess was ", guess
-    if secret_number > int(guess):
-        print "Higher"
-    elif secret_number < int(guess):
-        print "Lower"
-    else:
-        print "Correct"
+    # button that changes the range to [0,1000) and starts a new game 
+    global max_range, number_tries #import globals
+    max_range = 1000 #set max range
+    number_tries = 10 #set number of tries
+    print "Starting new game with range 1 - 1000 \n" #print welcome message
+    new_game() #start new game
 
-    
+def input_guess(guess):
+    global player_tries, number_tries, max_range #import globals
+    if int(guess) > max_range or int(guess) < 0: #check for a guess within the range and reset the game if not
+        print "Invalid guess, please guess within 1 and ", max_range
+        print "Resetting the game \n"
+        new_game()
+    elif player_tries >= number_tries: #reset game if no more attempts left
+        print "Sorry, you have run out of attempts"
+        new_game()
+    else: # check the guess against secret number and return result to player
+        print "Guess was ", guess
+        if secret_number > int(guess):
+            print "Higher, guess again"
+            print "You have ", number_tries - player_tries, " guesses left. \n"
+        elif secret_number < int(guess):
+            print "Lower, guess again"
+            print "You have ", number_tries - player_tries, " guesses left. \n"
+        else:
+            print "Correct"
+            new_game()
+    player_tries += 1
+
 # create frame
 frame = simplegui.create_frame('Guess the number', 100, 150)
+
+# register event handlers for control elements and start frame
 inp = frame.add_input('Enter guess', input_guess, 50)
 button1 = frame.add_button('Range is [0,100)', range100, 150)
 button2 = frame.add_button('Range is [0,1000)', range1000, 150)
 frame.start()
-
-# register event handlers for control elements and start frame
-
 
 # call new_game 
 new_game()
