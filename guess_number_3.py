@@ -42,27 +42,30 @@ def range1000():
 
 def input_guess(guess):
     global player_tries, number_tries, max_range #import globals
+    print "player tries: ",player_tries
+    print "number tries: ",number_tries
     player_guess = int(guess) #store player guess
-    if player_guess > max_range or player_guess < 0: #check for a guess within the range and reset the game if not
-        print "Invalid guess, please guess within 1 and ", max_range
-        print "Resetting the game \n"
-        new_game()
-    elif player_tries >= number_tries: #reset game if no more attempts left
-        print "Sorry, you have run out of attempts, restarting the game"
-        print "The secret number was ", secret_number,"\n"
-        new_game()
-    else: # check the guess against secret number and return result to player
-        print "Guess was ", guess
-        if secret_number > player_guess:
-            print "Higher, guess again"
-            print "Guesses left: ",number_tries - player_tries,"\n"
-        elif secret_number < player_guess:
-            print "Lower, guess again"
-            print "Guesses left: ",number_tries - player_tries,"\n"
-        else:
-            print "Correct"
+    if player_tries == number_tries: #reset game if no more attempts left
+            print "Sorry, you have run out of attempts, restarting the game"
+            print "The secret number was ", secret_number,"\n"
             new_game()
-    player_tries += 1
+    else:
+        if player_guess > max_range or player_guess < 0: #check for a guess within the range and reset the game if not
+            print "Invalid guess, please guess within 1 and ", max_range
+            print "Resetting the game \n"
+            new_game()
+        else: # check the guess against secret number and return result to player
+            print "Guess was ", guess
+            if secret_number > player_guess:
+                print "Higher, guess again"
+                print "Guesses left: ",number_tries - player_tries,"\n"
+            elif secret_number < player_guess:
+                print "Lower, guess again"
+                print "Guesses left: ",number_tries - player_tries,"\n"
+            else:
+                print "Correct, restarting the game\n"
+                new_game()
+    player_tries += 1 #increment player attempts
 
 # create frame
 frame = simplegui.create_frame('Guess the number', 100, 150)
