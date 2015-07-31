@@ -28,7 +28,8 @@ def range100():
     global max_range, number_tries #import globals
     max_range = 100 #set max range
     number_tries = 7 #set number of tries
-    print "Starting new game with range 1 - 100 \n" #print welcome message
+    print "Starting new game with range 1 - ",max_range #print welcome message
+    print "You have ",number_tries, "attempts \n"
     new_game() #start new game
 
 def range1000():
@@ -36,7 +37,8 @@ def range1000():
     global max_range, number_tries #import globals
     max_range = 1000 #set max range
     number_tries = 10 #set number of tries
-    print "Starting new game with range 1 - 1000 \n" #print welcome message
+    print "Starting new game with range 1 - ", max_range #print welcome message
+    print "You have ",number_tries, "attempts \n"
     new_game() #start new game
 
 def input_guess(guess):
@@ -46,8 +48,8 @@ def input_guess(guess):
         print "Resetting the game \n"
         new_game()
     elif player_tries >= number_tries: #reset game if no more attempts left
-        print "Sorry, you have run out of attempts"
-        print "The secret number was ", secret_number
+        print "Sorry, you have run out of attempts, restarting the game"
+        print "The secret number was ", secret_number,"\n"
         new_game()
     else: # check the guess against secret number and return result to player
         print "Guess was ", guess
