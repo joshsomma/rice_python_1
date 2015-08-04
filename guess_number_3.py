@@ -43,9 +43,7 @@ def range1000():
 def input_guess(guess):
     global player_tries, number_tries, max_range #import globals
     player_tries += 1 #increment player attempts
-    print "player tries: ",player_tries
-    print "number tries: ",number_tries
-    player_guess = int(guess) #store player guess
+    player_guess = int(guess) #store player guess as int
     if player_guess > max_range or player_guess < 0: #check for a guess within the range and reset the game if not
         print "Invalid guess, please guess within 1 and ", max_range
         print "Resetting the game \n"
@@ -62,8 +60,8 @@ def input_guess(guess):
             print "Correct, restarting the game\n"
             new_game()
     if player_tries >= number_tries: #reset game if no more attempts left
-        print "Sorry, you have run out of attempts, restarting the game"
-        print "The secret number was ", secret_number,"\n"
+        print "The secret number was ", secret_number
+        print "Sorry, you have run out of attempts, restarting the game \n"
         new_game()
 
 # create frame
