@@ -1,0 +1,36 @@
+import simplegui
+
+#global state
+
+#helper functions
+
+def init(start):
+    """Initializes n."""
+    global n
+    n = start
+    print "Input is", n
+
+def compute(n):
+    if n % 2 == 0:
+        n = n / 2
+    else:
+        n = n * 3 + 1
+    print n
+
+ # timer callback
+
+def update():
+    global n
+    if n > 1:
+        compute(n)
+    else:
+        timer.stop()
+    n -= 1
+
+ #register event handlers
+
+timer = simplegui.create_timer(1, update)
+
+#start program
+init(23)
+timer.start()
