@@ -13,7 +13,8 @@ HALF_PAD_WIDTH = PAD_WIDTH / 2
 HALF_PAD_HEIGHT = PAD_HEIGHT / 2
 LEFT = False
 RIGHT = True
-#temp code
+paddle1_pos = [0, HEIGHT / 2 - HALF_PAD_HEIGHT]
+paddle2_pos = [WIDTH, HEIGHT / 2 - HALF_PAD_HEIGHT]
 
 
 # initialize ball_pos and ball_vel for new ball in middle of table
@@ -41,7 +42,8 @@ def draw(canvas):
     canvas.draw_line([WIDTH / 2, 0],[WIDTH / 2, HEIGHT], 1, "White")
     canvas.draw_line([PAD_WIDTH, 0],[PAD_WIDTH, HEIGHT], 1, "White")
     canvas.draw_line([WIDTH - PAD_WIDTH, 0],[WIDTH - PAD_WIDTH, HEIGHT], 1, "White")
-     
+    canvas.draw_line([0, HEIGHT / 2],[WIDTH, HEIGHT / 2], 1, "White")
+
     # update ball
     ball_pos[0] += ball_vel[0]
     ball_pos[1] += ball_vel[1]
@@ -69,9 +71,15 @@ def draw(canvas):
     canvas.draw_circle(ball_pos, BALL_RADIUS, 2, "Red", "White")
     
     # update paddle's vertical position, keep paddle on the screen
+    def move_up(key):
+
     
     # draw paddles
-    
+
+    canvas.draw_line((paddle1_pos[0], paddle1_pos[1]), (paddle1_pos[0], paddle1_pos[1] + PAD_HEIGHT), PAD_WIDTH, 'WHITE') #paddle1
+    canvas.draw_line((paddle2_pos[0], paddle2_pos[1]), (paddle2_pos[0], paddle2_pos[1] + PAD_HEIGHT), PAD_WIDTH, 'WHITE') #paddle2
+
+
     # determine whether paddle and ball collide    
     
     # draw scores
@@ -81,6 +89,7 @@ def keydown(key):
    
 def keyup(key):
     global paddle1_vel, paddle2_vel
+    
 
 
 # create frame
