@@ -31,13 +31,13 @@ def draw(canvas):
     sq_br = [50,100]
     sq_bl = [0,100]
     for n in l1:
-        for v in exposed:
-            if v == True:
-                canvas.draw_text(str(n), (draw_letter,80), 72, 'WHITE')
-            else:
-                canvas.draw_polygon([sq_tr, sq_tl,sq_br,sq_bl], 2, 'Orange', 'Green')
-
+        canvas.draw_text(str(n), (draw_letter,80), 48, 'WHITE')
         draw_letter += 50
+    for i in range(len(l1)):
+        if not exposed[i]:
+            canvas.draw_polygon([sq_tr,sq_tl,sq_br,sq_bl], 2, 'Orange', 'Green')
+
+
         sq_tr[0] += 50
         sq_tl[0] += 50
         sq_br[0] += 50
